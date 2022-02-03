@@ -1,3 +1,5 @@
+<img alt="Password Generator Logo" src="logo.png" width=800px>
+
 # Password Generator
 A simpel command line utility for generating passwords.<br>
 The program is designed to be used in a terminal via manual user input or via a command line interface.
