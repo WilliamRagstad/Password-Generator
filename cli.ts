@@ -1,4 +1,5 @@
 import { VERSION } from "./version.ts";
+import { generatePassword } from "./mod.ts";
 import { parse, Args } from "https://deno.land/std/flags/mod.ts";
 import Ask from "https://deno.land/x/ask@1.0.6/mod.ts";
 import { red, green, bold, cyan, yellow, magenta } from "https://deno.land/std/fmt/colors.ts";
@@ -9,8 +10,6 @@ import { red, green, bold, cyan, yellow, magenta } from "https://deno.land/std/f
 
 const ask = new Ask();
 const parsedArgs = parse(Deno.args);
-
-
 
 // *********
 // Functions
@@ -41,7 +40,6 @@ ${bold(cyan("Options"))}:
 function printError(message: string) {
 	console.log(`\n${red("Error")}: ${yellow(message)}`);
 }
-
 
 /**
  * Generate a new function that validates an input string and checks if it is a number and if it is within the range of the min and max (if given any).
@@ -84,27 +82,6 @@ function validateNumber(min?: number, max?: number): (input?: string | number) =
 function validateBoolean(input?: string): boolean {
 	return ["y", "n"].includes(input?.toLowerCase() ?? "");
 }
-
-
-function generatePassword(length: number, numbers: boolean, specials: boolean): string {
-	const charset = generateCharset(numbers, specials);
-	return [...new Array(length)].map(() => charset[Math.floor(Math.random() * charset.length)]).join("");
-}
-
-/**
- * Generates a charset for the password generator.
- * @param numbers Include numbers in the password
- * @param specials Include special characters in the password
- */
-function generateCharset(numbers: boolean, specials: boolean): string {
-	return "abcdefghijklmnopqrstuvwxyz" +
-		"ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
-		(numbers ? "0123456789" : "") +
-		(specials ? "!@#$%^&*()_+" : "");
-}
-
-
-
 
 // ***********
 // Main method
