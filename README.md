@@ -19,7 +19,67 @@ deno install -A -f -n pass https://deno.land/x/pass/cli.ts
 
 ## CLI Usage
 
-Under construction.
+### Manual User Input
+
+Run the password generator through the interactive user interface by typing `pass` in the terminal.
+
+```shell
+> pass
+
+╔═══════════════════════════╗
+║ Password Generator v1.2.0 ║
+║    by @WilliamRagstad     ║
+╚═══════════════════════════╝
+
+Use --help to see a list of available options.
+Generate a new safe password with the following options:
+
+> How long do you want your password to be? (8-128) 20
+? Do you want numbers in your password? [Y/n] y
+? Do you want special characters in your password? [Y/n] n
+
+Password: FI1NqqVAtWsIsKpdS835
+
+```
+
+### Command Line Interface
+
+Or directly pass the options to the CLI tool to instantly generate a password. Type `pass --help` to see a list of available options.
+
+```shell
+> pass --help
+
+╔═══════════════════════════╗
+║ Password Generator v1.2.0 ║
+║    by @WilliamRagstad     ║
+╚═══════════════════════════╝
+
+Usage: pass (options)
+
+Options:
+  --help, -h    Print this help message
+  --version, -v Print the version number
+
+  --length=[n], -l=[n]  Length of the password
+  --numbers, -n Include numbers in the password.
+  --specials, -s Include special characters in the password.
+  --no-prefix, -p Do not print the prefix.
+
+```
+
+The example below will generate a password with a length of 20, numbers and special characters included, and no prefix.
+
+```shell
+> pass --length=20 --numbers --specials --no-prefix
+PKFlZIZnS5D^nnWP0_jB
+```
+
+Or use the short form of the options.
+
+```shell
+> pass -l=20 -n -s -p
+kA!4hn@uZpZBjEE8U8#s
+```
 
 ## Library Usage
 
