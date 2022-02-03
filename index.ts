@@ -26,7 +26,7 @@ function printBanner() {
 }
 
 function printHelp() {
-	console.log(`${bold(cyan("Usage"))}: password (options)
+	console.log(`${bold(cyan("Usage"))}: pass (options)
 
 ${bold(cyan("Options"))}:
   ${yellow("--help")}, ${yellow("-h")}    Print this help message
