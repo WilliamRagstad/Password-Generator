@@ -102,6 +102,13 @@ console.log(`Generated password: ${password}`);
 
 > ### [**View full documentation here**](https://doc.deno.land/https://deno.land/x/pass@1.2.0/mod.ts).
 
+### Use with JavaScript
+
+The library is bundled to a JavaScript file that can be used in a browser. Link to the script file using:
+```html
+<script src="https://deno.land/x/pass/dist/pass.bundle.js"></script>
+```
+
 <br>
 
 ## License
