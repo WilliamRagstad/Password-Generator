@@ -9,11 +9,32 @@ In **Projlett**, you submit a small set of simpel ideas and concepts that you th
 In return, you get a random idea that you shall implement in the best way you possible can during a limited time.
 This is a great way to learn new things and to get a sense of how to implement something in a real world scenario.
 
-## Installation
+## CLI Installation
 
+You can install the CLI tool by running the following command:
 
+```shell
+deno install -A -f -n pass https://deno.land/x/pass/cli.ts
+```
 
-## Usage
+## CLI Usage
+
+Under construction.
+
+## Library Usage
+
+The library is also designed to be used in a Deno environment. Not only as a command line utility.
+Import the password generator library and use it as follows:
+
+```typescript
+import { generatePassword } from "https://deno.land/x/pass/mod.ts";
+
+const length = 20;
+const numbers = true;
+const specials = true;
+const password = generatePassword(length, numbers, specials);
+console.log(`Generated password: ${password}`);
+```
 
 ## License
 This project is licensed under the MIT license.
