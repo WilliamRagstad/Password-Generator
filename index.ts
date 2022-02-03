@@ -1,3 +1,4 @@
+import { VERSION } from "./version.ts";
 import { parse, Args } from "https://deno.land/std/flags/mod.ts";
 import Ask from "https://deno.land/x/ask@1.0.6/mod.ts";
 import { red, green, bold, cyan, yellow, magenta } from "https://deno.land/std/fmt/colors.ts";
@@ -6,7 +7,6 @@ import { red, green, bold, cyan, yellow, magenta } from "https://deno.land/std/f
 // Global variables
 // ****************
 
-const version = "1.0";
 const ask = new Ask();
 const parsedArgs = parse(Deno.args);
 
@@ -18,10 +18,10 @@ const parsedArgs = parse(Deno.args);
 
 function printBanner() {
 	console.log(`
-╔══════════════════════════╗
-║  ${bold(red("Password"))} ${bold(cyan("Generator"))} v${version} ║
-║    ${cyan("by")} ${bold(green("@WilliamRagstad"))}    ║
-╚══════════════════════════╝
+╔═══════════════════════════╗
+║ ${bold(red("Password"))} ${bold(cyan("Generator"))} v${VERSION.padEnd(5, ' ')} ║
+║    ${cyan("by")} ${bold(green("@WilliamRagstad"))}     ║
+╚═══════════════════════════╝
 `);
 }
 
@@ -128,7 +128,7 @@ Generate a new safe password with the following options:
 		printBanner();
 		printHelp();
 	} else if (parsedArgs.v || parsedArgs.version) {
-		console.log("Password Generator version " + version);
+		console.log("Password Generator version " + VERSION);
 	} else if (parsedArgs.l || parsedArgs.length || parsedArgs.n || parsedArgs.numbers || parsedArgs.s || parsedArgs.specials) {
 		const lengthOpt = parsedArgs.l ?? parsedArgs.length;
 		const length = parseInt(lengthOpt);
