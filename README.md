@@ -106,8 +106,9 @@ console.log(`Generated password: ${password}`);
 
 The library is bundled to a JavaScript file that can be used in a browser. Link to the script file using:
 ```html
-<script src="https://deno.land/x/pass/dist/pass.bundle.js"></script>
+<script src="https://cdn.deno.land/pass/versions/1.2.2/raw/dist/pass.bundle.js"></script>
 ```
+This will load the library and provide global functions called `generatePassword` and `generateCharset`.
 
 <br>
 
