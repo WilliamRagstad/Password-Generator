@@ -6,6 +6,7 @@ import { red, green, bold, cyan, yellow, magenta } from "https://deno.land/std/f
 // Global variables
 // ****************
 
+const version = "1.0";
 const ask = new Ask();
 const parsedArgs = parse(Deno.args);
 
@@ -18,7 +19,7 @@ const parsedArgs = parse(Deno.args);
 function printBanner() {
 	console.log(`
 ╔══════════════════════════╗
-║  ${bold(red("Password"))} ${bold(cyan("Generator"))} v1.0 ║
+║  ${bold(red("Password"))} ${bold(cyan("Generator"))} v${version} ║
 ║    ${cyan("by")} ${bold(green("@WilliamRagstad"))}    ║
 ╚══════════════════════════╝
 
@@ -29,14 +30,16 @@ Generate a new safe password with the following options:
 
 function printHelp() {
 	console.log(`
-${bold(cyan("Usage"))}: password [options]
+${bold(cyan("Usage"))}: password (options)
 
 ${bold(cyan("Options"))}:
   ${yellow("--help")}, ${yellow("-h")}    Print this help message
+  ${yellow("--version")}, ${yellow("-v")} Print the version number
+
   ${yellow("--length")}=${yellow("[n]")}, ${yellow("-l")}=${yellow("[n]")}  Length of the password
-  ${yellow("--numbers")}, ${yellow("-n")} Include numbers in the password. Default is ${yellow("true")}
-  ${yellow("--specials")}, ${yellow("-s")} Include special characters in the password. Default is ${yellow("true")}
-`);
+  ${yellow("--numbers")}, ${yellow("-n")} Include numbers in the password.
+  ${yellow("--specials")}, ${yellow("-s")} Include special characters in the password.
+  ${yellow("--no-prefix")}, ${yellow("-p")} Do not print the prefix.`);
 }
 
 function printError(message: string) {
@@ -124,6 +127,8 @@ async function main(args: string[]) {
 		console.log(`\n${green("Password")}: ${cyan(password)}`);
 	} else if (parsedArgs.h || parsedArgs.help) {
 		printHelp();
+	} else if (parsedArgs.v || parsedArgs.version) {
+		console.log("Password Generator version " + version);
 	} else if (parsedArgs.l || parsedArgs.length || parsedArgs.n || parsedArgs.numbers || parsedArgs.s || parsedArgs.specials) {
 		const lengthOpt = parsedArgs.l ?? parsedArgs.length;
 		const length = parseInt(lengthOpt);
@@ -137,12 +142,17 @@ async function main(args: string[]) {
 			return;
 		}
 		const specials = parsedArgs.s ?? parsedArgs.specials ?? true;
+		const noPrefix = parsedArgs.p ?? parsedArgs["no-prefix"] ?? false;
 		if (!(typeof specials === "boolean")) {
 			printError("--specials or -s are flags. Don't pass anything.");
 			return;
 		}
 		const password = generatePassword(length, numbers, specials);
-		console.log(`\n${green("Password")}: ${cyan(password)}`);
+		if (!noPrefix) {
+			console.log(`\n${green("Password")}: ${cyan(password)}`);
+		} else {
+			console.log(cyan(password));
+		}
 	} else {
 		printError("Unknown option. Use --help to see a list of available options.");
 	}
