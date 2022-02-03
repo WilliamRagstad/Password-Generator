@@ -22,15 +22,11 @@ function printBanner() {
 ║  ${bold(red("Password"))} ${bold(cyan("Generator"))} v${version} ║
 ║    ${cyan("by")} ${bold(green("@WilliamRagstad"))}    ║
 ╚══════════════════════════╝
-
-Use ${bold(yellow("--help"))} to see a list of available options.
-Generate a new safe password with the following options:
 `);
 }
 
 function printHelp() {
-	console.log(`
-${bold(cyan("Usage"))}: password (options)
+	console.log(`${bold(cyan("Usage"))}: password (options)
 
 ${bold(cyan("Options"))}:
   ${yellow("--help")}, ${yellow("-h")}    Print this help message
@@ -118,6 +114,9 @@ async function main(args: string[]) {
 	// console.log(parsedArgs);
 	if (args.length === 0) {
 		printBanner();
+		console.log(`Use ${bold(yellow("--help"))} to see a list of available options.
+Generate a new safe password with the following options:
+`);
 		const { length, numbers, specials } = await ask.prompt([
 			{ type: "number", name: "length", "message": "How long do you want your password to be? (8-128)", prefix: green(">"), validate: validateNumber(8, 128) },
 			{ type: "confirm", name: "numbers", message: "Do you want numbers in your password?", validate: validateBoolean },
@@ -126,6 +125,7 @@ async function main(args: string[]) {
 		const password = generatePassword(length as number, numbers as boolean, specials as boolean);
 		console.log(`\n${green("Password")}: ${cyan(password)}`);
 	} else if (parsedArgs.h || parsedArgs.help) {
+		printBanner();
 		printHelp();
 	} else if (parsedArgs.v || parsedArgs.version) {
 		console.log("Password Generator version " + version);
