@@ -12,5 +12,3 @@ function generatePassword(length, numbers, specials) {
 function generateCharset(numbers, specials) {
     return "abcdefghijklmnopqrstuvwxyz" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + (numbers ? "0123456789" : "") + (specials ? "!@#$%^&*()_+" : "");
 }
-export { generateCharset as generateCharset, generatePassword as generatePassword };
-export { generatePassword as default };
