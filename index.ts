@@ -136,12 +136,16 @@ async function main(args: string[]) {
 			printError("--length or -l must pass a number between 8 and 128.");
 			return;
 		}
-		const numbers = parsedArgs.n ?? parsedArgs.numbers ?? true;
+		const numbers = parsedArgs.n ?? parsedArgs.numbers ?? false;
 		if (!(typeof numbers === "boolean")) {
 			printError("--numbers or -n are flags. Don't pass anything.");
 			return;
 		}
-		const specials = parsedArgs.s ?? parsedArgs.specials ?? true;
+		const specials = parsedArgs.s ?? parsedArgs.specials ?? false;
+		if (!(typeof specials === "boolean")) {
+			printError("--specials or -s are flags. Don't pass anything.");
+			return;
+		}
 		const noPrefix = parsedArgs.p ?? parsedArgs["no-prefix"] ?? false;
 		if (!(typeof specials === "boolean")) {
 			printError("--specials or -s are flags. Don't pass anything.");
