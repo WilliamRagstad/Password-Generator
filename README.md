@@ -96,5 +96,9 @@ const password = generatePassword(length, numbers, specials);
 console.log(`Generated password: ${password}`);
 ```
 
+> ### [**View full documentation here**](https://doc.deno.land/https://deno.land/x/pass@1.2.0/mod.ts).
+
+<br>
+
 ## License
 This project is licensed under the MIT license.
