@@ -16,6 +16,10 @@ You can install the CLI tool by running the following command:
 ```shell
 deno install -A -f -n pass https://deno.land/x/pass/cli.ts
 ```
+Or run it without installing it, using `land`:
+```shell
+land pass
+```
 
 ## CLI Usage
 
